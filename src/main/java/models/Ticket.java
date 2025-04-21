@@ -1,5 +1,7 @@
+package models;
+
 /**
- * The {@code Ticket} class represents a ticket for an event.
+ * The {@code models.Ticket} class represents a ticket for an event.
  * Each ticket has a unique ID, a price, and is associated with a specific event title.
  * <p>
  * This class provides a method to display the ticket's details in a formatted string,
@@ -7,7 +9,7 @@
  *
  * Example usage:
  * <pre>
- *     Ticket t = new Ticket(101, 50.0, "Music Concert");
+ *     models.Ticket t = new models.Ticket(101, 50.0, "Music Concert");
  *     System.out.println(t.showTicketDetails());
  * </pre>
  *
@@ -26,7 +28,7 @@ public class Ticket {
         this.eventTitle=eventTitle;
     }
     public String showTicketDetsils(){ //gonna change for GUI ig !!
-        return "Ticket ID : "+this.ticketID+", Event : " +eventTitle+", Price : "+this.price;
+        return "models.Ticket ID : "+this.ticketID+", models.Event : " +eventTitle+", Price : "+this.price;
     }
 }
 

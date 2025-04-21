@@ -1,3 +1,5 @@
+package models;
+
 public interface CrudManager <T>
 {
     void create(T item);

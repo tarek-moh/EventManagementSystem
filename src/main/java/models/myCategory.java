@@ -1,3 +1,5 @@
+package models;
+
 import java.util.ArrayList;
 /**
  * The {@code Category} class represents a classification or type of events
@@ -16,12 +18,12 @@ import java.util.ArrayList;
  * @author Nour
  */
 
-public class Category {
+public class myCategory {
     private String name;
     private ArrayList<Event>events;
 
     //constructor
-    Category(String name){
+    public myCategory(String name){
         this.name=name;
         events=new ArrayList<>();
     }

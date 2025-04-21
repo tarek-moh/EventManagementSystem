@@ -1,26 +1,64 @@
+package services;
+
+import models.*;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
+import models.myCategory;
 /**
  * @author Tarek Mohamed
  *
  * This class holds static dummy data to simulate a real database.
- * It also acts as a CRUD manager for the user hierarchy: Attendee, Organizer, and Admin.
+ * It also acts as a CRUD manager for the user hierarchy: models.Attendee, models.Organizer, and models.Admin.
  *
- * Note: Room is managed by Admin. Event and Category are managed separately by Organizer and Admin respectively.
+ * Note: models.Room is managed by models.Admin. models.Event and Category are managed separately by models.Organizer and models.Admin respectively.
  *
  */
-public class Database implements CrudManager<Attendee>, CrudManager<Admin>, CrudManager<Organizer>{
+public class Database{
     private static ArrayList<Attendee> attendeeList = new ArrayList<Attendee>();
     private static ArrayList<Organizer> organizerList = new ArrayList<Organizer>();
     private static ArrayList<Admin> adminList = new ArrayList<Admin>();
     private static ArrayList<Event> eventList = new ArrayList<Event>();
     private static ArrayList<Room> roomList = new ArrayList<Room>();
-    private static ArrayList<Category> categoryList = new ArrayList<Category>();
-
+    private static ArrayList<myCategory> categoryList = new ArrayList<myCategory>();
 
     static {
-        attendeeList.add(new Attendee("Ali", "ali@gmail.com", "1234", 100));
-        attendeeList.add(new Attendee("Sara", "sara@yahoo.com", "5678", 200));
-        attendeeList.add(new Attendee("Omar", "omar@gmail.com", "abcd", 300));
+        attendeeList.add(new Attendee("Tarek", "password123", LocalDate.of(2002, 4, 20), "Cairo", Gender.MALE));
+        attendeeList.add(new Attendee("Sara", "saraPass", LocalDate.of(1998, 12, 5), "Alexandria", Gender.FEMALE));
+        attendeeList.add(new Attendee("Omar", "omar321", LocalDate.of(2000, 7, 15), "Giza", Gender.MALE));
+        attendeeList.add(new Attendee("Laila", "helloWorld", LocalDate.of(1995, 2, 28), "Tanta", Gender.FEMALE));
+        attendeeList.add(new Attendee("Nour", "nour789", LocalDate.of(2003, 11, 3), "Mansoura", Gender.FEMALE));
+
+        adminList.add(new Admin("Tarek", "password123", LocalDate.of(2002, 4, 20), "models.Event Manager", "09-16"));
+        adminList.add(new Admin("Omar", "adminpass", LocalDate.of(1995, 3, 10), "Venue Coordinator", "08-14"));
+        adminList.add(new Admin("Nour", "novelQueen", LocalDate.of(2001, 11, 3), "Tech Supervisor", "10-18"));
+        adminList.add(new Admin("Ahmed", "rootAccess", LocalDate.of(1990, 6, 25), "Operations Lead", "07-15"));
+        adminList.add(new Admin("Mona", "admin123", LocalDate.of(1998, 1, 30), "Security Head", "11-20"));
+
+        organizerList.add(new Organizer("Tarek", "password123", LocalDate.of(2002, 4, 20)));
+        organizerList.add(new Organizer("Omar", "organizer456", LocalDate.of(1999, 8, 12)));
+        organizerList.add(new Organizer("Nour", "mysteryBooks", LocalDate.of(2001, 11, 3)));
+        organizerList.add(new Organizer("Lina", "eventsPro", LocalDate.of(1997, 2, 27)));
+        organizerList.add(new Organizer("Youssef", "letsPlanIt", LocalDate.of(2000, 6, 15)));
+
+        roomList.add(new Room("10-12,18-20",100));
+        roomList.add(new Room("14-16,09-11",100));
+        roomList.add(new Room("20-22",100));
+
+        categoryList.add(new myCategory("Classical Music"));
+        categoryList.add(new myCategory("Jazz"));
+        categoryList.add(new myCategory("Technology"));
+        categoryList.add(new myCategory("Art"));
+        categoryList.add(new myCategory("Literature"));
+        categoryList.add(new myCategory("Photography"));
+        categoryList.add(new myCategory("Stand-up Comedy"));
+        categoryList.add(new myCategory("Business & Startups"));
+
+        eventList.add(new Event("Nocturne in C# Minor", "Frederic Chopin piece", organizerList.get(0), "Classical Music", "10-12", 100));
+        eventList.add(new Event("Jazz Night", "Smooth jazz evening with live saxophone", organizerList.get(1), "Jazz", "18-20", 150));
+        eventList.add(new Event("Tech Talk 2025", "Exploring the future of AI and Quantum Computing", organizerList.get(2), "Technology", "14-16", 0));
+        eventList.add(new Event("Painting Workshop", "Hands-on acrylic painting workshop for beginners", organizerList.get(3), "Art", "09-11", 75));
+        eventList.add(new Event("Poetry Slam", "An open mic night for poetry lovers", organizerList.get(4), "Literature", "20-22", 50));
     }
 
     // Getters
@@ -39,14 +77,15 @@ public class Database implements CrudManager<Attendee>, CrudManager<Admin>, Crud
     public static ArrayList<Room> getRoomList() {
         return roomList;
     }
-    public static ArrayList<Category> getCategoryList() {
+    public static ArrayList<myCategory> getCategoryList() {
         return categoryList;
     }
 
 
     ////////////////////////// CRUD operations for *ATTENDEE* //////////////////////
     // CREATE
-    public static void addAttendee(Attendee attendee)
+
+    public static void create(Attendee attendee)
     {
         attendeeList.add(attendee);
     }
