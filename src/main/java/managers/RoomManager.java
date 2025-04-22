@@ -41,4 +41,19 @@ public class RoomManager {
         }
         if (roomList.isEmpty()) {    System.out.println("No available rooms");}
     }
+
+    public static void showAllRooms()
+    {
+        if(Database.getRoomList().isEmpty())
+        {
+            System.out.println("No rooms in the system");
+        }
+        for(Room room : Database.getRoomList())
+        {
+            System.out.println("====================");
+            room.printRoomDetails();
+            System.out.println("====================");
+
+        }
+    }
 }

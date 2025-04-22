@@ -1,5 +1,7 @@
 package models;
 
+import services.Database;
+
 import java.util.ArrayList;
 /**
  * The {@code Category} class represents a classification or type of events
@@ -20,28 +22,33 @@ import java.util.ArrayList;
 
 public class myCategory {
     private String name;
-    private ArrayList<Event>events;
 
     //constructor
     public myCategory(String name){
         this.name=name;
-        events=new ArrayList<>();
     }
     //methods
-    public void addEvent(Event e){
-        events.add(e);
-    }
+//    public void addEvent(Event e){
+//        events.add(e);
+//    }
     //getters
-    public ArrayList<Event> getAllEvents(){
-        return this.events;
+
+    public int getEventCount()
+    {
+        int count = 0;
+        for(Event ev : Database.getEventList())
+        {
+            if(ev.getCategory().equals(name))
+                count++;
+        }
+        return count;
     }
 
-    public int EventsNumber(){return events.size();}
     public String getName(){ //notice i didn't add it to the UML diagram
         return name;
     }
 
     public String toString(){
-        return name+EventsNumber();
+        return "[" + name + "]" +" Number of Events in "+ name+ ": " + getEventCount();
     }
 }

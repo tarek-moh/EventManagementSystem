@@ -27,6 +27,12 @@ public class Room {
     private ArrayList<String> bookedSlots;
 
     public Room(String availableHours, int capacity) {
+        if (capacity <= 0) {
+            throw new IllegalArgumentException("Room capacity must be a positive number.");
+        }
+        if (availableHours == null || availableHours.isBlank()) {
+            throw new IllegalArgumentException("Available hours cannot be empty.");
+        }
         this.roomID = ++roomCount;
         this.slots = availableHours;
         this.capacity = capacity;
@@ -34,6 +40,14 @@ public class Room {
     }
 
     public void setAvailableHours(String availableHours) {
+        if (availableHours == null || availableHours.isBlank()) {
+            throw new IllegalArgumentException("Available hours cannot be empty.");
+        }
+        if(!isValidTimeslotFormat(availableHours))
+        {
+            throw new IllegalArgumentException("Invalid timeslot format. Expected format: \"hh-hh\" (24-hour).");
+        }
+
         this.slots = availableHours;
     }
 
@@ -62,19 +76,16 @@ public class Room {
         }
         return false;
     }
-    public boolean bookRoom(String timeslot) throws IllegalArgumentException{
 
-        if(!timeslot.matches("(0?[0-9]|1[0-9]|2[0-3])\\-(0?[0-9]|1[0-9]|2[0-3])"))
-        {
-            throw new IllegalArgumentException("Time slot must matches \"hh-hh\" format.\n");
+    public boolean bookRoom(String timeslot) {
+        if (!isValidTimeslotFormat(timeslot)) {
+            throw new IllegalArgumentException("Invalid timeslot format. Expected format: \"hh-hh\" (24-hour).");
         }
-        if (isAvailable(timeslot))
-        {
+
+        if (isAvailable(timeslot)) {
             bookedSlots.add(timeslot);
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -86,18 +97,16 @@ public class Room {
         System.out.println("Booked Slots: " + bookedSlots);
     }
 
-    public boolean cancelBooking(String timeslot) throws IllegalArgumentException
-    {
-        if(!timeslot.matches("^(0[0-9]|1[0-9]|2[0-3])-(0[0-9]|1[0-9]|2[0-3])$"))
-        {
-            throw new IllegalArgumentException("Time slot must matches \"hh-hh\" format.\n");
+    public void cancelBooking(String timeslot) {
+        if (!isValidTimeslotFormat(timeslot)) {
+            throw new IllegalArgumentException("Invalid timeslot format. Expected format: \"hh-hh\" (24-hour).");
         }
 
         if (bookedSlots.contains(timeslot)) {
             bookedSlots.remove(timeslot);
-            return true;
+            System.out.println("Booking canceled for timeslot: " + timeslot);
         } else {
-            return false;
+            System.out.println("No booking found for timeslot: " + timeslot);
         }
     }
 
@@ -109,6 +118,10 @@ public class Room {
                 "Available Hours: " + slots  + "\n" +
                 "Booked Slots: " + bookedSlots;
 
+    }
+
+    private static boolean isValidTimeslotFormat(String timeslot) {
+        return timeslot.matches("(0?[0-9]|1[0-9]|2[0-3])\\-(0?[0-9]|1[0-9]|2[0-3])");
     }
 }
 

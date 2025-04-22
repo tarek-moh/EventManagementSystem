@@ -240,7 +240,7 @@ public class Attendee extends User
             managers.PaymentService.transferFunds(wallet, e.getOrganizer().getWallet(), e.getTicketPrice());
             Ticket ticket = e.generateTicket();
             ticketList.add(ticket);
-            e.addAtendee(this);
+            e.addAttendee(this);
             return true;
         }
         else{
@@ -296,5 +296,20 @@ public class Attendee extends User
     }
 
     public static int getAttendeeCount() {    return attendeeCount;    }
+
+    public void showAttendeeDetails()
+    {
+        System.out.println("Attendee ID: " + this.ID);
+        System.out.println("Attendee Username: " + this.userName);
+        System.out.println("Gender: " + this.gender);
+        System.out.println("Address: " + this.address);
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Attendee ID: " + this.ID + "Attendee Username: " + this.userName + "Gender: " + this.gender
+                + "Address: " + this.address;
+    }
 }
 

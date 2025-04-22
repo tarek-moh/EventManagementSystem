@@ -1,9 +1,12 @@
 package models;
 
+import managers.EventManager;
+import managers.RoomManager;
 import services.Database;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class Organizer extends User {
     private static int organizerCount = 0;
@@ -18,218 +21,129 @@ public class Organizer extends User {
         this.wallet = new Wallet();
     }
 
-    // Implement abstract method
     @Override
-    public void showDashboard()
-    {
-        while (true)
-        {
-            System.out.println("========================================");
-            System.out.println("             Dashboard");
-            System.out.println("========================================");
-            System.out.println("1: Show available rooms\n2: Show my events \n3: Show attendees for my event\n4: Remove attendee from my event");
-            System.out.println("5: Create an event\n6: Read an event \n7: Update an event\n8: Delete an event\n9: models.Wallet");
-            System.out.println("10: Check Profile\n11: Logout");
+    public void showDashboard() {
+        while (true) {
+            displayDashboardMenu();
+            short choice = getValidMenuChoice(1, 11);
 
-            short choice;
-            while (true) // check if choice is an integer (1-5)
-            {
-                if (input.hasNextShort())
-                {
-                    choice = input.nextShort();
-                
-                    // Show available rooms
-                    if (choice == 1) {    //showAvailableRooms();
-                        }
+            switch (choice) {
+                case 1 -> RoomManager.showAvailableRooms();
 
-                    // Show organizer's events
-                    else if (choice == 2) { // showMyEvents();
-                    }
 
-                    else if (choice == 3) {    // Show attendees for organizer's event
-                    }
+                case 2 -> showMyEvents();
 
-                    else if (choice == 4) {   // Remove attendee from organizer's event
-                    }
 
-                    if (choice == 5) // Create an event
-                    {
-                        System.out.println("Enter title of event");
-                        String eventTitle = input.nextLine();
-                        System.out.println("Enter description of event");
-                        String eventDescription = input.nextLine();
-                        System.out.println("Enter category name of models.Event");
-                        String eventCategoryName = input.nextLine();
-                        System.out.println("Enter time slot of models.Event");
-                        String eventTimeSlot = input.nextLine();
-                        // models.Event newevent = new models.Event(eventTitle, eventDescription, eventCategoryName, eventTimeSlot);
-                        // createEvent (newEvent);
-                    }
+                case 3 -> showEventAttendees();
 
-                    else if (choice == 6) // Read an event
-                    {
-                        System.out.println("Enter ID of event");
-                        int eventID = input.nextInt();
-                        // if (readEvent(eventID) != null)
-                        {
-                            // readEvent(eventID).showEventDetails();
-                        }
-                        // else
-                        {    System.out.println("models.Event not found");    }
-                    }
 
-                    else if (choice == 7){    // Update an event
-                    }
+                case 4 -> removeEventAttendee();
 
-                    else if (choice == 8) // Delete an event
-                    {
-                        System.out.println("Enter ID of event");
-                        int eventIDtoDelete = input.nextInt();
-                        // if (deleteEvent(eventIDtoDelete))
-                        {    System.out.println("models.Event deleted");    }
-                        // else
-                        {    System.out.println("models.Event not found");    }
-                    }
 
-                    else if (choice == 9)
-                    {
-                        // System.out.println(wallet.getBalnce());  
-                        System.out.println("Current balance");
-                        System.out.println("1: Add money     2: Withdraw money     3: Exit");
-                        while (true) 
-                            {
-                                if (input.hasNextShort()) 
-                                {
-                                    short inchoice = input.nextShort();
-                                
-                                    if (inchoice == 1 ) 
-                                    {
-                                        System.out.println("Enter amouunt: ");
-                                        int amount = input.nextInt();
-                                        // updateWallet(amount, inchoice);
-                                        break; 
-                                    } 
+                case 5 -> createEvent();
 
-                                    else if (inchoice == 2) 
-                                    {
-                                        System.out.println("Enter amouunt: ");
-                                        int amount = input.nextInt();
-                                        // updateWallet(amount, inchoice);
-                                        break;
-                                    }
-                                    
-                                    else if (inchoice == 3) {    break;    }
-                                    
-                                    else 
-                                    {
-                                        System.out.println("Invalid input! Please choose between 1 and 3:");
-                                    }
-                                } 
-                                
-                                else 
-                                {
-                                    System.out.println("Invalid input! Please choose between 1 and 3:");
-                                    input.next(); // Clear the invalid input
-                                }
-                            }
-                    }
 
-                    
+                case 6 ->  updateEvent();
 
-                    else if (choice == 10)
-                    {
-                        short profchoice ;
-                        while (true)
-                        {
-                            System.out.println("========================================");
-                            System.out.println("Profile");
-                            System.out.println("========================================");
-                            System.out.println("Username            1: Change Username\n" + getUserName());
-                            System.out.println("Password            2: change Password\n" + getPassword());
-                            System.out.println("Date of birth       3: Change date of birth\n" + getDateOfBirth());
-                            System.out.println("ID                  4: Exit Profile\n" + getId());
-
-                            while (true) // check if choice is an integer (1-5)
-                            {
-                                if (input.hasNextShort()) 
-                                {
-                                    profchoice = input.nextShort();
-                                
-                                    if (profchoice == 1 ) 
-                                    {
-                                        System.out.println("Enter your new username ");
-                                        // check if username is taken
-                                        String newName = input.next();
-                                        setUserName(newName);    
-                                        break; 
-                                    } 
-
-                                    else if (profchoice == 2) 
-                                    {
-                                        System.out.println("Enter your new password ");
-                                        String newPass = input.next();
-                                        setPassword(newPass);
-                                        break;
-                                    } 
-
-                                    else if (profchoice == 3) 
-                                    {
-                                        {
-                                            System.out.println("Enter year of birth (e.g., 2000): ");
-                                            int year = input.nextInt();
-                                            while (year < 1 || year > 2024)
-                                            {
-                                                System.out.println("Invalid Year! Try again");
-                                                year = input.nextInt();
-                                            }
-                                            System.out.println("Enter month of birth (1-12): ");
-                                            int month = input.nextInt();
-                                            while (month < 1 || month > 12)
-                                            {
-                                                System.out.println("Invalid Month! Try again(1-12)");
-                                                month = input.nextInt();
-                                            }
-                                            System.out.println("Enter day of birth (1-31): ");
-                                            int day = input.nextInt();
-                                            while (day < 1 || day > 31)
-                                            {
-                                                System.out.println("Invalid Day! Try again(1-31)");
-                                                day = input.nextInt();
-                                            }
-                                            setDateOfBirth(year,month,day);
-                                        }
-                                        break; 
-                                    }
-
-                                    else if (profchoice == 4)  {    break;   }
-                                    
-                                    else 
-                                    {
-                                        System.out.println("Invalid input! Please choose between 1 and 4:");
-                                    }
-                                } 
-                                
-                                else 
-                                {
-                                    System.out.println("Invalid input! Please choose between 1 and 4:");
-                                    input.next(); // Clear the invalid input
-                                }
-                            }
+                case 7 -> {
+                    while (true) {
+                        System.out.println("Enter The Event ID: ");
+                        try {
+                            String Id = input.nextLine();
+                            deleteEvent(Id);
+                            break;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Event ID is a String");
                         }
                     }
-            
-                    else if (choice == 11) {    break;    }
-                            
-                    else{    System.out.println("Invalid input! Please choose between 1 and 11: ");    }
                 }
-                
-                else
-                {
-                    System.out.println("Invalid input! Please choose between 1 and 11: ");
-                    input.next(); // Clear the invalid input
-                }
+
+                case 8 -> manageWallet();
+
+                case 9 -> showProfile();
+
+                case 10 -> {
+                    return;
+                } // Exit dashboard
+
+                default->
+                    System.out.println("Invalid input! Please choose between 1 and 11:");
             }
         }
+    }
+
+    // Helper methods
+    private void displayDashboardMenu() {
+        System.out.println("========================================");
+        System.out.println("             Dashboard");
+        System.out.println("========================================");
+        System.out.println("1: Show available rooms\n2: Show my events \n3: Show attendees for my event\n4: Remove attendee from my event");
+        System.out.println("5: Create an event\n6: Read an event \n7: Update an event\n8: Delete an event\n9: Wallet");
+        System.out.println("10: Check Profile\n11: Logout");
+    }
+
+    private short getValidMenuChoice(int min, int max) {
+        while (true) {
+            if (input.hasNextShort()) {
+                short choice = input.nextShort();
+                input.nextLine(); // Consume newline
+                if (choice >= min && choice <= max) {
+                    return choice;
+                }
+            } else {
+                input.next(); // Clear invalid input
+            }
+            System.out.printf("Invalid input! Please choose between %d and %d:%n", min, max);
+        }
+    }
+
+    public void createEvent() {
+
+        while (true) {
+            System.out.println("Enter title of event");
+            String eventTitle = input.nextLine();
+            System.out.println("Enter description of event");
+            String eventDescription = input.nextLine();
+            System.out.println("Enter category name of Event");
+            String eventCategoryName = input.nextLine();
+            System.out.println("Enter time slot of Event");
+            String eventTimeSlot = input.nextLine();
+            System.out.println("Enter ticket price of the Event");
+            double ticketPrice = input.nextDouble();
+            try {
+                Event newEvent = new Event(eventTitle, eventDescription, this, eventCategoryName, eventTimeSlot, ticketPrice);
+                createEvent(newEvent);
+                break;
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ex);
+            }
+
+        }
+
+    }
+
+//    private Event readEvent(int eventID) {
+//        input.nextLine(); // Consume newline
+//         Event event = readEvent(eventID);
+//         if (event != null) {
+//             event.showEventDetails();
+//         } else {
+//             System.out.println("Event not found");
+//         }
+//    }
+
+    private void manageWallet() {
+        System.out.println("Current balance");
+        // System.out.println(wallet.getBalance());
+        System.out.println("1: Add money     2: Withdraw money     3: Exit");
+
+        short walletChoice = getValidMenuChoice(1, 3);
+        if (walletChoice == 3) return;
+
+        System.out.println("Enter amount: ");
+        int amount = input.nextInt();
+        input.nextLine(); // Consume newline
+        // updateWallet(amount, walletChoice);
     }
 
     // models.Organizer's Methods
@@ -258,10 +172,22 @@ public class Organizer extends User {
     }
 
     public boolean deleteEvent(String eventId) {
-        if (readEvent(eventId) != null) {
-            Database.getEventList().remove(readEvent(eventId));
-            return true;
+        // Input validation
+        if (eventId.isEmpty()) {
+            System.out.println("Error: Invalid event ID");
+            return false;
         }
+
+        // Find the event by ID
+        for (int i = 0; i < Database.getEventList().size(); i++) {
+            if (Database.getEventList().get(i).getEventID().equals(eventId)) {
+                Database.getEventList().remove(i);
+                System.out.println("Event with ID " + eventId + " deleted successfully");
+                return true;
+            }
+        }
+
+        System.out.println("Error: Event with ID " + eventId + " not found");
         return false;
     }
 
@@ -308,6 +234,13 @@ public class Organizer extends User {
     }
 
     public Wallet getWallet(){return wallet;}
+
+    /// TODO: Override toString()
+//    @Override
+//    public String toString()
+//    {
+//        return
+//    }
 }
 
 

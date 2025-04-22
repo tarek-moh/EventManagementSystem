@@ -63,7 +63,7 @@ public class Event {
         else {return true;}
     }
 
-    public void addAtendee(Attendee a){
+    public void addAttendee(Attendee a){
         attendees.add(a);
     }
 
@@ -97,7 +97,7 @@ public class Event {
         System.out.println("Event ID: " + eventID);
         System.out.println("Title: " + title);
         System.out.println("Description: " + description);
-        System.out.println("Organizer: "+organizer);
+        System.out.println("Organizer: "+ organizer.getUserName());
         System.out.println("Category: " + category);
         System.out.println("Time Slot: " + timeslot);
         System.out.println("Ticket Price: " + ticketPrice + " EGP");
@@ -109,4 +109,7 @@ public class Event {
         return eventID+","+title+", "+description+", "+organizer+", "+category+", "+timeslot+", "+ticketPrice+", "+ attendeesCount()+".";
     }
 
+    public String getCategory() {
+        return category;
+    }
 }
