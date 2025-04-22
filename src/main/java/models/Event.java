@@ -88,8 +88,25 @@ public class Event {
 
     public double getTicketPrice() {return ticketPrice;}
 
+    private int attendeesCount(){
+        return attendees.size();
+    }
+
     public void showEventDetails(){
        //ig it's gonna change when implementing the GUI!!
+        System.out.println("Event ID: " + eventID);
+        System.out.println("Title: " + title);
+        System.out.println("Description: " + description);
+        System.out.println("Organizer: "+organizer);
+        System.out.println("Category: " + category);
+        System.out.println("Time Slot: " + timeslot);
+        System.out.println("Ticket Price: " + ticketPrice + " EGP");
+        System.out.println("Total Attendees Registered:"+ attendeesCount());
+
+    }
+
+    public String toString(){
+        return eventID+","+title+", "+description+", "+organizer+", "+category+", "+timeslot+", "+ticketPrice+", "+ attendeesCount()+".";
     }
 
 }

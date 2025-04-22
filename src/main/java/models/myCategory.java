@@ -36,7 +36,12 @@ public class myCategory {
         return this.events;
     }
 
+    public int EventsNumber(){return events.size();}
     public String getName(){ //notice i didn't add it to the UML diagram
         return name;
+    }
+
+    public String toString(){
+        return name+EventsNumber();
     }
 }
