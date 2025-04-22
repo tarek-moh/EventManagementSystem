@@ -22,14 +22,14 @@ public class Wallet {
     public void addFunds(double amount) throws IllegalArgumentException {
          if (amount > 0){
              balance += amount;
-
+             return;
          }
          throw new IllegalArgumentException("Funds provided is negative, Funds cannot be negative");
 
     }
 
     public Boolean deductFunds(double amount) throws IllegalArgumentException {
-         if(amount>=0){
+         if(amount<0){
              throw new IllegalArgumentException("Funds provided is negative, Funds cannot be negative");
          }
 
@@ -40,7 +40,6 @@ public class Wallet {
          else{
              return false;
          }
-
 
     }
 }

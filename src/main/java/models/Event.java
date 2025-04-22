@@ -104,12 +104,59 @@ public class Event {
         System.out.println("Total Attendees Registered:"+ attendeesCount());
 
     }
+    public void showEventAttendees(){
+        System.out.println("List of attendees:");
+        for(int i=0;i<attendees.size();i++) {
+            System.out.println(attendees.get(i));
+        }
+    }
 
     public String toString(){
         return eventID+","+title+", "+description+", "+organizer+", "+category+", "+timeslot+", "+ticketPrice+", "+ attendeesCount()+".";
     }
 
-    public String getCategory() {
-        return category;
+    //  getters
+    public String getTitle() { return title; }
+    public String getCategory() { return category; }  // No setter - final field
+    public String getDescription() { return description; }
+    public String getTimeslot() { return timeslot; }
+
+    // setters with validation
+    public void setTitle(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be null or empty");
+        }
+        this.title = title.trim();
     }
+
+    public void setDescription(String description) {
+        this.description = (description != null) ? description.trim() : null;
+    }
+
+    public void setTimeslot(String timeslot) {
+        if (timeslot == null || !timeslot.matches("^\\d{2}:\\d{2}-\\d{2}:\\d{2}$")) {
+            throw new IllegalArgumentException("Timeslot must be in HH:MM-HH:MM format");
+        }
+        this.timeslot = timeslot;
+    }
+
+    public void setTicketPrice(double price) {
+        if (price < 0) {
+            throw new IllegalArgumentException("Price cannot be negative");
+        }
+        this.ticketPrice = price;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;  // Optional: Add validation if needed
+    }
+
+    public void removeEventAttendee(Attendee a){
+        for(int i=0;i<attendees.size();i++){
+            if(a.ID==attendees.get(i).ID){
+                attendees.remove(i);
+                Database.deleteAttendee(a.ID);}
+        }
+    }
+
 }

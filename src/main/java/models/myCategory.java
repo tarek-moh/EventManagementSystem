@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * @author Nour
  */
 
-public class myCategory {
+public class    myCategory {
     private String name;
 
     //constructor
@@ -51,4 +51,13 @@ public class myCategory {
     public String toString(){
         return "[" + name + "]" +" Number of Events in "+ name+ ": " + getEventCount();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof myCategory)) return false;
+        myCategory other = (myCategory) o;
+        return this.name.equalsIgnoreCase(other.name);
+    }
+
 }

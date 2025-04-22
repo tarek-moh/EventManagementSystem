@@ -23,10 +23,10 @@ public class RoomManager {
     public static void showAvailableRooms()
     {
         ArrayList<Room> roomList = Database.getRoomList();
-
+        boolean noAvailable = true;
+        System.out.println("Available Rooms\n");
         for (Room room : roomList)
         {
-            System.out.println("Available Rooms\n");
             ArrayList<String> slots = new ArrayList<>(List.of(room.getScheduleSlots().split(",")));
             for(String slot : slots)
             {
@@ -35,11 +35,12 @@ public class RoomManager {
                     System.out.println("models.Room ID: " + room.getRoomID());
                     System.out.println("schedule hours: " + room.getScheduleSlots());
                     System.out.println("Capacity: " + room.getCapacity() + "\n");
+                    noAvailable = false;
                 }
             }
 
         }
-        if (roomList.isEmpty()) {    System.out.println("No available rooms");}
+        if (noAvailable) {    System.out.println("No available rooms");}
     }
 
     public static void showAllRooms()
