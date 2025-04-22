@@ -5,6 +5,7 @@ package models;/*
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import services.Database;
 /**
  * The {@code models.Event} class represents an event that can be booked and attended.
  * It includes attributes such as title, description, category, time slot, and associated room.
