@@ -1,4 +1,4 @@
-package models;
+package com.models;
 
 public interface CrudManager <T>
 {

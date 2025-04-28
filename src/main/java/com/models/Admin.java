@@ -1,13 +1,13 @@
-package models;
-import managers.RoomManager;
-import services.Database;
+package com.models;
+import com.managers.RoomManager;
+import com.services.Database;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static managers.AttendeeManager.showAllAttendees;
-import static managers.EventManager.showAllEvents;
-import static managers.RoomManager.showAllRooms;
+import static com.managers.AttendeeManager.showAllAttendees;
+import static com.managers.EventManager.showAllEvents;
+import static com.managers.RoomManager.showAllRooms;
 
 
 public class Admin extends User {

@@ -1,7 +1,8 @@
-package models;
+package com.models;
 
-import managers.EventManager;
-import services.Database;
+import com.managers.PaymentService;
+import com.managers.EventManager;
+import com.services.Database;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -240,7 +241,7 @@ public class Attendee extends User
 
     public boolean buyTicket(Event e){
         if (e.isAvailable()){
-            if(!managers.PaymentService.transferFunds(wallet, e.getOrganizer().getWallet(), e.getTicketPrice()))
+            if(!PaymentService.transferFunds(wallet, e.getOrganizer().getWallet(), e.getTicketPrice()))
             {
                 return false;
             }

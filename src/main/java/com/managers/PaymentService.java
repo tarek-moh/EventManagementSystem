@@ -1,6 +1,6 @@
-package managers;
+package com.managers;
 
-import models.Wallet;
+import com.models.Wallet;
 
 public class PaymentService {
 

@@ -1,4 +1,4 @@
-package models;
+package com.models;
 
 /**
  * The {@code models.Ticket} class represents a ticket for an event.

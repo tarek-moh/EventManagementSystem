@@ -1,7 +1,7 @@
-package managers;
+package com.managers;
 
-import models.Room;
-import services.Database;
+import com.models.Room;
+import com.services.Database;
 
 import java.util.ArrayList;
 import java.util.List;

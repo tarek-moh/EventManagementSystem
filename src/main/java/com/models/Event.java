@@ -1,11 +1,13 @@
-package models;/*
+package com.models;/*
  *add parameters for the room constructor
  * implement showEventDetails()
  **/
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import services.Database;
+
+import com.managers.RoomManager;
+import com.services.Database;
 /**
  * The {@code models.Event} class represents an event that can be booked and attended.
  * It includes attributes such as title, description, category, time slot, and associated room.
@@ -49,7 +51,7 @@ public class Event {
         this.category = category;
         this.timeslot = timeslot;
 
-        room = managers.RoomManager.bookAvailableRoom(timeslot);
+        room = RoomManager.bookAvailableRoom(timeslot);
         if (this.room == null) {
             throw new IllegalStateException("Cannot create event without available room.");
         }

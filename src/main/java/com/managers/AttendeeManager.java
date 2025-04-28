@@ -1,7 +1,7 @@
-package managers;
+package com.managers;
 
-import models.Attendee;
-import services.Database;
+import com.models.Attendee;
+import com.services.Database;
 
 public class AttendeeManager {
     public static void showAllAttendees()

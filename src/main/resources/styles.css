@@ -1,0 +1,99 @@
+/* Main Background - Gradient with Light Texture */
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #f5f7fa, #c3cfe2);
+    -fx-background-image: url("background-pattern.png");
+    -fx-background-size: 300px 300px;
+    -fx-background-opacity: 0.05;
+}
+
+/* Glass Panel Effect for Forms */
+.form-pane {
+    -fx-background-color: rgba(255, 255, 255, 0.85);
+    -fx-background-radius: 15;
+    -fx-border-color: rgba(0, 0, 0, 0.1);
+    -fx-border-width: 1;
+    -fx-border-radius: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 15, 0, 0, 5);
+}
+
+/* Modern Card Style */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 2;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+/* Accent Highlights */
+.accent-bar {
+    -fx-background-color: linear-gradient(to right, #6a11cb, #2575fc);
+    -fx-background-radius: 0 0 15 15;
+    -fx-min-height: 5;
+}
+
+/* Class-based styles */
+.login-button {
+    -fx-background-color: #0078d7;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.icon-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333;
+}
+
+/* ID-based styles (use fx:id in FXML) */
+#emailField {
+    -fx-prompt-text-fill: #999;
+}
+
+
+/* Constrain ImageView to grid cell */
+.grid-image {
+    -fx-max-width: 100%;
+    -fx-max-height: 100%;
+    -fx-fit-to-width: true;
+    -fx-fit-to-height: true;
+}
+
+.text-field-custom {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #0078d7;
+    -fx-border-radius: 0;
+    -fx
+    -fx-font-family: "Arial";
+}
+.text-field-custom:focused {
+    -fx-border-color: #005bb5; /* Darker blue on focus */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,120,215,0.3), 5, 0, 0, 1);
+}
+
+/* Hover effect */
+.text-field-custom:hover {
+    -fx-background-color: #f0f8ff;
+}
+
+
+/* styles.css */
+.btn-primary {
+    -fx-background-color: #4266b2;
+    -fx-border-color: #4266b2;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-cursor: hand; /* Changes cursor to hand icon */
+    -fx-border-radius: 10;
+    }
+
+/* Hover Effect */
+.btn-primary:hover {
+    -fx-background-color: #3a5a9b; /* Slightly darker blue */
+    -fx-border-color: #3a5a9b;
+    -fx-effect: dropshadow(gaussian, rgba(66,102,178,0.5), 5, 0, 0, 1);
+}
+
+/* Pressed Effect */
+.btn-primary:pressed {
+    -fx-background-color: #2f4a80;
+    -fx-border-color: #2f4a80;
+    -fx-translate-y: 1px; /* Small "push down" effect */
+}

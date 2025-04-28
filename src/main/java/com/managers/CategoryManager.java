@@ -1,7 +1,7 @@
-package managers;
+package com.managers;
 
-import models.myCategory;
-import services.Database;
+import com.models.myCategory;
+import com.services.Database;
 
 public class CategoryManager {
     public static void showAllCategories() {

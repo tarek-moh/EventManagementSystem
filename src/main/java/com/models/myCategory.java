@@ -1,8 +1,7 @@
-package models;
+package com.models;
 
-import services.Database;
+import com.services.Database;
 
-import java.util.ArrayList;
 /**
  * The {@code Category} class represents a classification or type of events
  * (e.g., Music, Tech, Sports). Each category maintains a list of events that

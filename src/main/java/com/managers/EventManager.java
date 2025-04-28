@@ -1,8 +1,8 @@
-package managers;
+package com.managers;
 import java.util.ArrayList;
-import models.Event;
-import models.Attendee;
-import services.Database;
+import com.models.Event;
+import com.models.Attendee;
+import com.services.Database;
 
 
 public class EventManager {

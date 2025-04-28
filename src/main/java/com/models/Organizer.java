@@ -1,8 +1,8 @@
-package models;
+package com.models;
 
-import managers.EventManager;
-import managers.RoomManager;
-import services.Database;
+import com.managers.EventManager;
+import com.managers.RoomManager;
+import com.services.Database;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
