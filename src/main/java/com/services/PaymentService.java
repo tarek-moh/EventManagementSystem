@@ -1,4 +1,4 @@
-package com.managers;
+package com.services;
 
 import com.models.Wallet;
 

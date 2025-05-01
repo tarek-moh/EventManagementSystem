@@ -66,7 +66,7 @@ import javafx.geometry.Rectangle2D;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/loginView.fxml"));
         primaryStage.setTitle("Event Management System");
         // Get screen dimensions
         Screen screen = Screen.getPrimary();

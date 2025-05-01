@@ -59,41 +59,176 @@
 .text-field-custom {
     -fx-background-color: #ffffff;
     -fx-border-color: #0078d7;
-    -fx-border-radius: 0;
-    -fx
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+
     -fx-font-family: "Arial";
+    -fx-font-size: 12px;
+    -fx-text-fill: #000000;
+
+    /* Padding and size control */
+    -fx-padding: 6 10;
+    -fx-min-height: 25px;
+    -fx-pref-height: 25px;
+    -fx-max-height: 25px;
+
+    /* Prevent layout shifts */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-translate-x: 0;
+    -fx-translate-y: 0;
+    -fx-effect: none;
 }
+
+/* Focus effect */
 .text-field-custom:focused {
-    -fx-border-color: #005bb5; /* Darker blue on focus */
+    -fx-border-color: #005bb5;
     -fx-effect: dropshadow(three-pass-box, rgba(0,120,215,0.3), 5, 0, 0, 1);
+
+    /* Keep layout stable */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-font-size: 12px;
 }
 
 /* Hover effect */
 .text-field-custom:hover {
     -fx-background-color: #f0f8ff;
+
+    /* Keep layout stable */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-font-size: 12px;
 }
 
-
-/* styles.css */
 .btn-primary {
+    /* Base Style */
     -fx-background-color: #4266b2;
-    -fx-border-color: #4266b2;
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
-    -fx-cursor: hand; /* Changes cursor to hand icon */
-    -fx-border-radius: 10;
-    }
+    -fx-cursor: hand;
+    -fx-background-radius: 20px;
 
-/* Hover Effect */
-.btn-primary:hover {
-    -fx-background-color: #3a5a9b; /* Slightly darker blue */
-    -fx-border-color: #3a5a9b;
-    -fx-effect: dropshadow(gaussian, rgba(66,102,178,0.5), 5, 0, 0, 1);
+    /* Size Locking */
+    -fx-min-width: 60px;
+    -fx-pref-width: 60px;
+    -fx-max-width: 60px;
+    -fx-min-height: 20px;
+    -fx-pref-height: 20px;
+    -fx-max-height: 20px;
+
+    /* Text Stabilization */
+    -fx-font-size: 9px;
+    -fx-padding: 0 12;
+    -fx-alignment: CENTER;
+    -fx-content-display: CENTER;
+
+    /* Disable animations/glitches */
+    -fx-effect: none;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-translate-x: 0;
+    -fx-translate-y: 0;
 }
 
-/* Pressed Effect */
+.btn-primary:hover {
+    -fx-background-color: #3a5a9b;
+    -fx-effect: dropshadow(gaussian, rgba(58,90,155,0.2), 2, 0.1, 0, 1);
+
+    /* LOCK Size and Scale */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-font-size: 9px;
+}
+
+
 .btn-primary:pressed {
     -fx-background-color: #2f4a80;
-    -fx-border-color: #2f4a80;
-    -fx-translate-y: 1px; /* Small "push down" effect */
+    -fx-translate-y: 1px;
 }
+/* Modern Compact RadioButton CSS - No Background and No Border */
+
+/* Basic styles */
+.custom-radio-button {
+    -fx-padding: 0px 10px;
+    -fx-font-size: 12px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-text-fill: #333;
+    -fx-background-color: transparent; /* No background */
+    -fx-border-width: 0px; /* No border */
+    -fx-alignment: center-left;
+}
+
+/* Hover state */
+.custom-radio-button:hover {
+    -fx-background-color: transparent; /* No background */
+    -fx-text-fill: #007BFF; /* Blue text on hover */
+}
+
+/* Selected state */
+.custom-radio-button:selected {
+    -fx-background-color: transparent; /* No background */
+    -fx-text-fill: #007BFF; /* Blue text when selected */
+}
+
+/* Disabled state */
+.custom-radio-button:disabled {
+    -fx-background-color: transparent; /* No background */
+    -fx-text-fill: #9e9e9e; /* Grey text when disabled */
+}
+
+/* Focused state */
+.custom-radio-button:focused {
+    -fx-background-color: transparent; /* No background */
+    -fx-text-fill: #0056b3; /* Blue text when focused */
+}
+
+
+
+/* Style for the DatePicker */
+.custom-date-picker {
+    -fx-background-color: #f0f0f0; /* Light gray background */
+    -fx-border-color: #0078d4;     /* Border color (blue) */
+    -fx-border-width: 2px;         /* Border width */
+    -fx-border-radius: 5px;        /* Rounded corners */
+    -fx-padding: 5px;              /* Padding inside the DatePicker */
+    -fx-font-size: 14px;           /* Font size */
+    -fx-font-family: 'Arial';      /* Font family */
+}
+
+/* Style the text field inside the DatePicker */
+.custom-date-picker .text-field {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-border-color: #0078d4;     /* Blue border */
+    -fx-border-width: 2px;         /* Border width */
+    -fx-padding: 5px;              /* Padding inside the text field */
+    -fx-font-size: 14px;           /* Font size */
+}
+
+/* Style for the pop-up calendar (date picker popup) */
+.custom-date-picker .calendar-popup {
+    -fx-background-color: #ffffff;  /* White background for calendar */
+    -fx-border-color: #0078d4;      /* Blue border */
+    -fx-border-width: 2px;          /* Border width */
+    -fx-border-radius: 5px;         /* Rounded corners */
+}
+
+/* Style the date cells inside the calendar popup */
+.custom-date-picker .calendar-popup .day-cell {
+    -fx-background-color: #f0f0f0;   /* Light gray background */
+    -fx-border-color: transparent;   /* No border */
+    -fx-font-size: 12px;              /* Font size */
+    -fx-text-fill: #0078d4;           /* Blue text color */
+}
+
+/* Style the selected date in the calendar */
+.custom-date-picker .calendar-popup .day-cell.selected {
+    -fx-background-color: #0078d4;  /* Blue background when selected */
+    -fx-text-fill: #ffffff;         /* White text when selected */
+}
+
+/* Hover effect for the date cells */
+.custom-date-picker .calendar-popup .day-cell:hover {
+    -fx-background-color: #e0e0e0;  /* Light gray background on hover */
+}
+

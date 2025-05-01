@@ -85,7 +85,7 @@ public class Database{
     ////////////////////////// CRUD operations for *ATTENDEE* //////////////////////
     // CREATE
 
-    public static void create(Attendee attendee)
+    public static void addAttendee(Attendee attendee)
     {
         attendeeList.add(attendee);
     }

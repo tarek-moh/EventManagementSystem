@@ -1,6 +1,6 @@
 package com.models;
 
-import com.managers.PaymentService;
+import com.services.PaymentService;
 import com.managers.EventManager;
 import com.services.Database;
 
