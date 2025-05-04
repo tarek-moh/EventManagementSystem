@@ -7,13 +7,25 @@ import com.models.Organizer;
 import com.services.Database;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class LoginManager {
+
+    private Stage primaryStage;
+    public void setPrimaryStage(Stage stage)
+    {
+        this.primaryStage = stage;
+    }
+
 
     private final ToggleGroup group1 = new ToggleGroup(); // Create group
     private final ToggleGroup group2 = new ToggleGroup();
@@ -87,9 +99,20 @@ public class LoginManager {
     private void handleLogin() {
         String username = loginUsernameField.getText();
         String password = loginPasswordField.getText();
-
+        Parent dashboard = null;
         if (login(username, password)) {
-            showAlert(AlertType.INFORMATION, "Login Successful", "Welcome, " + username);
+            try
+            {
+                dashboard = FXMLLoader.load(getClass().getResource("/views/dashboardView.fxml"));
+            }catch(IOException ex)
+            {
+                showAlert(AlertType.ERROR, "Error loading dashboard", ex.getMessage());
+            }
+            Scene scene = new Scene(dashboard);
+            primaryStage.setScene(scene);
+            primaryStage.setFullScreen(true);
+            primaryStage.show();
+
         } else {
             showAlert(AlertType.ERROR, "Login Failed", "Invalid username or Password");
         }
@@ -169,6 +192,7 @@ public class LoginManager {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
+        alert.setResizable(true);
         alert.showAndWait();
     }
 

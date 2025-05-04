@@ -19,7 +19,7 @@ import com.services.Database;
  * @author Nour
  */
 
-public class    myCategory {
+public class myCategory {
     private String name;
 
     //constructor

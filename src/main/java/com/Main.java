@@ -55,7 +55,9 @@ package com;
 //    }
 //}
 
+import com.managers.LoginManager;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -63,20 +65,34 @@ import javafx.stage.Stage;
 import javafx.stage.Screen;
 import javafx.geometry.Rectangle2D;
 
+import java.io.IOException;
+
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/loginView.fxml"));
-        primaryStage.setTitle("Event Management System");
-        // Get screen dimensions
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
+        try {
+            // 1. Create the loader instance (don't call load() yet)
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/loginView.fxml"));
 
-        // Create scene with screen size
-        Scene scene = new Scene(root, bounds.getWidth(), bounds.getHeight());
+            // 2. First load() call - this actually loads the FXML
+            Parent root = loader.load();
 
-        primaryStage.setScene(scene);
-        primaryStage.show();
+            // 3. Now get the controller and set the stage
+            LoginManager loginManager = loader.getController();
+            loginManager.setPrimaryStage(primaryStage);
+
+            // 4. Set up the scene
+            primaryStage.setTitle("Event Management System");
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.setFullScreen(true);
+            primaryStage.show();
+
+        } catch (IOException e) {
+            System.err.println("Failed to load login view:");
+            e.printStackTrace();
+            Platform.exit();
+        }
     }
 
     public static void main(String[] args) {

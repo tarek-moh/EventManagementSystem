@@ -232,3 +232,47 @@
     -fx-background-color: #e0e0e0;  /* Light gray background on hover */
 }
 
+.dashboard-button {
+    -fx-background-color: #f0f4f9;
+    -fx-padding: 5px 15px;  /* 5px top/bottom, 15px left/right */
+    -fx-effect: dropshadow(three-pass-box, #d8d8d8, 8, 0, 0, 0);
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+    -fx-font-family: 'Arial';
+    -fx-text-fill: #333333;
+}
+
+/* Hover effect */
+.dashboard-button:hover {
+    -fx-background-color: #e0e8f0;
+    -fx-effect: dropshadow(three-pass-box, #c8c8c8, 10, 0, 0, 0);
+}
+
+/* Pressed effect */
+.dashboard-button:pressed {
+    -fx-background-color: #d0dce8;
+    -fx-effect: dropshadow(three-pass-box, #b8b8b8, 6, 0, 0, 0);
+    -fx-translate-y: 1px;  /* Simulate button press */
+}
+
+.dashboard-nav-label {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 12px 20px; /* Larger padding for big navigation items */
+    -fx-alignment: center;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 0 1px; /* Left border only */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 2, 0, 0, 1);
+    -fx-cursor: hand;
+}
+
+.dashboard-text-label {
+    -fx-font-family: 'Roboto', 'Segoe UI', sans-serif;
+    -fx-font-size: 13px;
+    -fx-text-fill: #374151; /* Neutral dark gray */
+    -fx-padding: 0 12px; /* Horizontal spacing only */
+}

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.managers.CategoryManager;
 import com.managers.RoomManager;
 import com.services.Database;
 /**
@@ -48,7 +49,12 @@ public class Event {
         this.title = title;
         this.description = description;
         this.organizer = organizer;
-        this.category = category;
+        if(CategoryManager.isValid(category))
+        {
+            this.category = category;
+        }else{
+            throw new IllegalArgumentException("Invalid Category");
+        }
         this.timeslot = timeslot;
 
         room = RoomManager.bookAvailableRoom(timeslot);
